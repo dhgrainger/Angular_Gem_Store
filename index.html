@@ -64,25 +64,26 @@
                 <cite>--{{review.author}}</cite>
               </blockquote>
 
-              <form name="reviewForm">
+              <form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
+              ng-submit="reviewCtrl.addReview(product)">
                <blockquote>
                   <p>
-                    <b>Stars: {{review.stars}}</b>
-                  {{review.body}}
+                    <b>Stars: {{reviewCtrl.review.stars}}</b>
+                  {{reviewCtrl.review.body}}
                   </p>
-                  <cite>--{{review.author}}</cite>
+                  <cite>--{{reviewCtrl.review.author}}</cite>
                 </blockquote>
                 <h4>Submit a Review</h4>
                 <fieldset class="form-group">
-                  <select class="form-control" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars" ng-model="review.stars">
+                  <select class="form-control" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars" ng-model="reviewCtrl.review.stars">
                     <option value="">Rate the Product</option>
                   </select>
                 </fieldset>
                 <fieldset class="form-group">
-                  <textarea class="form-control" placeholder="Write a short review of the product..." title="Review" ng-model="review.body"></textarea>
+                  <textarea class="form-control" placeholder="Write a short review of the product..." title="Review" ng-model="reviewCtrl.review.body"></textarea>
                 </fieldset>
                 <fieldset class="form-group">
-                  <input type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" ng-model="review.author"/>
+                  <input type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" ng-model="reviewCtrl.review.author"/>
                 </fieldset>
                 <fieldset class="form-group">
                   <input type="submit" class="btn btn-primary" value="Submit Review" />
