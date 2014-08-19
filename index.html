@@ -47,9 +47,23 @@
           </div>
 
           <p>
-            <div ng-show="panel.isSelected(1)"><h1>Description</h1></div>
-            <div ng-show="panel.isSelected(2)"><h1>Specifications</h1></div>
-            <div ng-show="panel.isSelected(3)"><h1>Reviews</h1></div>
+            <div class="panel" ng-show="panel.isSelected(1)">
+              <h4>Description</h4>
+              <p>{{product.description}}</p>
+            </div>
+            <div class="panel" ng-show="panel.isSelected(2)">
+              <h4>Specifications</h4>
+            </div>
+            <div class="panel" ng-show="panel.isSelected(3)">
+              <h4>Reviews</h4>
+              <blockquote ng-repeat="review in product.reviews">
+                <p>
+                  <b>Stars: {{review.stars}}</b>
+                {{review.body}}
+              </p>
+                <cite>--{{review.author}}</cite>
+              </blockquote>
+            </div>
           </p>
         </section>
         <p>
