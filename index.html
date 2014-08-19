@@ -4,11 +4,11 @@
   <title>Shopping Site</title>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="style.css"/>
- </head>
+</head>
 <body ng-controller="StoreController as store" class="text-center">
 
   <h1>Grainger's Gem Store</h1>
-  <h2 class="highlighted">- An Angular Store -</h1>
+  <h2>- An Angular Store -</h1>
   <div class="col-md-3">
   </div>
   <div class="col-md-6">
@@ -22,31 +22,36 @@
         <div class="col-md-3">
          <h3>{{product.price | currency}}</h3>
         </div>
-         <div class="col-md-12">
+
+        <div class="col-md-12">
           <img ng-src="{{product.image}}"/>
         </div>
-        <div class="col-md-3">
-        </div>
-        <div class="col-md-8 text-center">
-          <ul ng-init="tab=1" class="nav nav-pills centered">
-            <li ng-class="{active:tab===1}">
-              <a href ng-click="tab = 1">Description</a>
-            </li>
-            <li ng-class="{active:tab===2}">
-              <a href ng-click="tab = 2">Specifications</a>
-            </li>
-            <li ng-class="{active:tab===3}">
-              <a href ng-click="tab = 3">Reviews</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-1">
-        </div>
-        <p class="centered">
-          <div ng-show="tab === 1"><h1 class="centered">Description</h1></div>
-          <div ng-show="tab === 2"><h1 class="centered">Specifications</h1></div>
-          <div ng-show="tab === 3"><h1 class="centered">Reviews</h1></div>
-        </p>
+
+        <section  ng-controller="PanelController as panel">
+          <div class="col-md-3">
+          </div>
+          <div class="col-md-8 text-center">
+            <ul class="nav nav-pills">
+              <li ng-class="{active: panel.isSelected(1)}">
+                <a href ng-click="panel.selectTab(1)">Description</a>
+              </li>
+              <li ng-class="{active: panel.isSelected(2)}">
+                <a href ng-click="panel.selectTab(2)">Specifications</a>
+              </li>
+              <li ng-class="{active: panel.isSelected(3)}">
+                <a href ng-click="panel.selectTab(3)">Reviews</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-1">
+          </div>
+
+          <p>
+            <div ng-show="panel.isSelected(1)"><h1>Description</h1></div>
+            <div ng-show="panel.isSelected(2)"><h1>Specifications</h1></div>
+            <div ng-show="panel.isSelected(3)"><h1>Reviews</h1></div>
+          </p>
+        </section>
         <p>
           <button ng-show="product.canPurchase">Add To Cart</button>
         </p>
